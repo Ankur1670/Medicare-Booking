@@ -9,11 +9,11 @@ const navLinks =[
         display:'Home'
     },
     {
-        path:'/doctor',
+        path:'/doctors',
         display:'Find a Doctor'
     },
     {
-        path:'/serviecs',
+        path:'/services',
         display:'Services'
     },
     {
