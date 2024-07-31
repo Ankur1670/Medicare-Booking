@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 const Signup = () => {
 
-  const [selectedFile,setSelectedFile] = useState(none)
+  const [selectedFile,setSelectedFile] = useState(null)
   const [previewURL,setPreviewURL] = useState("")
 
 
@@ -26,6 +26,11 @@ role:'patient'
     const file = event.target.files[0]
     console.log(file)
   }
+
+  const  submitHandler = async event=>{
+    event.preventDefault()
+  }
+
   return (
     <section className="px-5 xl:px-0">
       <div className="max-w-[1170px] mx-auto">
@@ -38,7 +43,7 @@ role:'patient'
         
           <div className="rounded-l-lg lg:pl-16 py-10">
             <h3 className='text-headingColor text-[22px] leading-9 font-bold mb-10'>Create an <span className='text-primaryColor'>account</span></h3>
-            <form>
+            <form onSubmit={submitHandler}>
             <div className="mb-5">
             <input
              type="text" 
