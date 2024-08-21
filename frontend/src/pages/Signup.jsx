@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import signupImg from '../assets/images/signup.gif'
 import avatar from '../assets/images/doctor-img01.png'
 import {Link} from 'react-router-dom'
+import uploadImageToCloudinary from '../utils/uploadCloudinary'
 
 const Signup = () => {
 
@@ -24,13 +25,16 @@ role:'patient'
 
   const handleFileInputChange = async(event)=>{
     const file = event.target.files[0]
-    console.log(file)
+    const data = await uploadImageToCloudinary(file)
+    setPreviewURL(data)
   }
 
   const  submitHandler = async event=>{
+    console.log(formData)
     event.preventDefault()
-  }
 
+  }
+  
   return (
     <section className="px-5 xl:px-0">
       <div className="max-w-[1170px] mx-auto">
