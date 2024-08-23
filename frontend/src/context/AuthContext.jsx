@@ -1,4 +1,4 @@
-import { Children, createContext } from "react";
+import { children, createContext } from "react";
 import { useContext,useEffect,useReducer } from "react"; 
 
 const initialState ={

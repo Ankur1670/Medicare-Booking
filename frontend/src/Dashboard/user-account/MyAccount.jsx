@@ -1,14 +1,25 @@
 import {useContext , useState} from 'react'
 import userImg from '../../assets/images/doctor-img01.png'
 import {authContext} from './../../context/AuthContext.jsx'
+import MyBooking from './MyBooking.jsx'
+import Profile from './Profile.jsx'
+import useGetProfile from '../../hooks/useFetchData.js'
+import { BASE_URL } from '../../../config.js'
 const MyAccount = () => {
     const {dispatch} = useContext(authContext)
     const [tab,setTab] = useState('bookings')
+
+    const { data: userData, loading, error } = useGetProfile(`${BASE_URL}/user/profile/me`);
+    console.log(userData,'userdata')
+
     const handleLogout = ()=>{
         dispatch({type:'LOGOUT'})
     }
   return (
-    <div className='max-w-[1170px] px-5 mx-auto'>
+    <section>
+          <div className='max-w-[1170px] px-5 mx-auto'>
+
+            
         <div className="grid md:grid-cols-3 gap-10">
             <div className="pb-[50px] px-[30px] rounded-md">
                 <div className="flex items-center justify-center">
@@ -34,10 +45,18 @@ const MyAccount = () => {
 <button onClick={()=>setTab('settings')} className={` ${tab==='settings' && 'bg-primaryColor text-white font-normal'} py-2  px-5 rounded-md text-headingColor font-semibold text-[16px] leading-7 border border-solid border-primaryColor`}>Profile Settings</button>
 
                 </div>
+                {
+                    tab === 'bookings' && <MyBooking/>
+                }
+                 {
+                    tab === 'settings' && <Profile/>
+                }
             </div>
         </div>
     </div>
+    </section>
+  
   )
 }
 
-export default MyAccount
+export default MyAccount;
